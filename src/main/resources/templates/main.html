@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+
+<div style="text-align: right">
+    <input type="button" value="Logout" onclick="window.location.href='logout'">
+</div>
+
+<form th:action="@{/delete}" th:method="post" th:object="${listWrapper}">
+<table border="1" align="center">
+    <tr>
+        <th></th>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Registration</th>
+        <th>LastLogin</th>
+        <th>Status</th>
+    </tr>
+    <tr th:each="user, itemStat: ${users}" align="center">
+
+        <td><input type="checkbox" th:field="${listWrapper.list}" th:value="${user.id}"/></td>
+        <td th:text="${user.id}" />
+        <td th:text="${user.username}" />
+        <td th:text="${user.email}" />
+        <td th:text="${user.regDate}" />
+        <td th:text="${user.lastLogin}" />
+        <td th:text="${user.status}" />
+    </tr>
+    <br><br>
+    <div style="text-align: center">
+        <button type="submit" th:name="delete">delete</button>
+        <button type="submit" th:name="blockuser" th:formaction="@{/block}">block</button>
+        <button type="submit" th:name="unblockuser" th:formaction="@{/unblock}">unblock</button>
+    </div>
+    <br>
+
+</table>
+
+</form>
+
+</body>
+</html>
